@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>introductory</title>
+    <script>
+        // literals
+        var text = "text";  //  => "" - string literal
+
+        //=================================================//
+
+        var user = {};      //  => {} - literal
+        user.name = "Name";
+        user.getName = function() {
+            console.log(user.name); // => Name
+        }
+        user.getName();
+
+        //=================================================//
+        var user2 = {
+            name: "Name2",
+            getName: function() {
+                console.log(user2.name);    // => Name2
+            }
+        };
+        user2.getName();
+
+        //=================================================//
+        var user3 = new Object();
+        user3.name = "Name3";
+        user3.getName = function() {
+            console.log(user3.name); // => Name
+        }
+        user3.getName();
+
+        var obj1 = new Object();
+        console.log(obj1.constructor === Object);   // => true
+
+        var obj2 = new Object(123);
+        console.log(obj2.constructor === Object);   // => false
+        console.log(obj2.constructor === Number);   // => true
+        console.log(obj2.toFixed(3));   // => 123.000
+
+        var obj2 = new Object('text test');
+        console.log(obj2.constructor === String);   // => true
+        console.log(obj2[0]);   // => t
+        console.log(obj2[1]);   // => e
+
+        // var obj3 = new Object(a);
+        // console.log(obj3);
+
+        //=================================================//
+
+        var a = new Array('t', 'e', 's', 't');
+        var b = ['t', 'e', 's', 't'];
+        console.log(typeof a);  // => object
+        console.log(typeof b);  // => object
+        console.log(a.constructor === Array);   // => true
+        console.log(b.constructor === Array);   // => true
+
+        var c1 =  new Array();
+        console.log(c1);    // => Array with c1.length = 0
+
+        var c2 =  new Array(10); 
+        console.log(c2);    // => Array with c2.length = 10
+
+        // var c3 =  new Array(2.5);
+        // console.log(c3); // error
+
+        //=================================================//
+        var nbr1 = 100;
+        var nbr2 = new Number(100);
+        console.log(typeof nbr1);   // => number
+        console.log(typeof nbr2);   // => object
+
+        var str1 = 'text string 1';
+        var str2 = new String('text string 2');
+        console.log(typeof str1);   // => string
+        console.log(typeof str2);   // => object
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

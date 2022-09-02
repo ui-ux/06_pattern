@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>callback ex</title>
+
+</head>
+<body>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+</body>
+
+<script>
+    function changeDiv(callback, likeObj) {
+        var list = [];
+        var allDiv = [];
+        var res;
+
+        allDiv = document.getElementsByTagName('div');
+        if (typeof callback != 'function') {
+            callback = false;
+        }
+
+        for (var i = 0; i < allDiv.length; i++) {
+            res = allDiv[i];
+            if (callback) {
+                callback.call(likeObj, res);
+            }
+            list.push(res);
+        }
+
+        return list;
+    }
+
+    var app = {};
+    app.color = "green";
+    app.borderStyle = "solid";
+    app.borderWidth = "1px";
+    app.marginBottom = "10px";
+    app.addBorder = function (node) {
+        node.style.border = this.borderStyle + " " + this.borderWidth + " " + this.color;
+        node.style.marginBottom = this.marginBottom;
+    }
+
+    changeDiv(app.addBorder, app);
+
+</script>
+</html>

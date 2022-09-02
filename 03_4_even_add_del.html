@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>immediately called function</title>
+    <script>
+        var utils = {
+            addListener: null,
+            removeListener: null
+        };
+
+        if (typeof window.addEventListener === "function") {
+            utils.addListener = function (e, type, fn) {
+                e.addEventListener(type, fn, false);
+            }
+            utils.removeListener = function (e, type, fn) {
+                e.removeEventListener(type, fn, false);
+            }
+        }
+
+        else if (typeof document.attachEvent === "function") {
+            utils.addListener = function (e, type, fn) {
+                e.attachEvent("on" + type, fn);
+            }
+            utils.removeListener = function (e, type, fn) {
+                e.detachEvent("on" + type, fn);
+            }
+        }
+
+        else {
+            utils.addListener = function (e, type, fn) {
+                e["on" + type] = fn;
+            }
+            utils.removeListener = function (e, type, fn) {
+                e["on" + type] = null;
+            }
+        }
+
+        utils.addListener(window, "load", function () {
+            var testBtn = document.getElementById("alert"),
+                removeBtn = document.getElementById("deleteHandler");
+
+            function say() {
+                alert("Hello world");
+            }
+
+            utils.addListener(testBtn, "click", say)
+
+            utils.addListener(removeBtn, "click", function () {
+                utils.removeListener(testBtn, "click", say);
+            })
+        });
+    </script>
+</head>
+<body>
+    <button id="alert">alert</button>
+    <button id="deleteHandler">delete even</button>
+</body>
+</html>  

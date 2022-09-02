@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Context</title>
+    <script>
+        function test1() {
+            console.log(this === window); //    => true
+        }
+
+        test1();
+
+        //=========================================
+        var obj = {
+            propTest: function() {
+                console.log(this === obj);      // => true
+                console.log(this === window);   // => false
+            }
+        }
+        obj.propTest();
+
+        //=========================================
+        function text2() {
+            console.log(this instanceof text2); // => true
+            console.log(this === text2);        // => false
+            console.log(this === window);       // => false
+
+        }
+
+        new text2();
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

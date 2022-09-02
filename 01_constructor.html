@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Costructor</title>
+    <script>
+        function Cstr(name){
+            this.newName = name;
+            this.getName = function() {
+                console.log(this.newName);
+            } 
+        }
+
+        // 'new' use 'local' Costructor
+        var user = new Cstr("User 1");
+        user.getName();     // = > User 1
+
+        var user2 = new Cstr("User 2");
+        user2.getName();    // = > User 1
+
+        //=================================================//
+
+        function Cstr2(name){
+            this.newName = name;
+        }
+
+        Cstr2.prototype.rootGetName = function(){
+            console.log(this.newName);
+        }
+        console.log(Cstr2.prototype);
+
+        var user3 = new Cstr2("User 3");
+        user3.rootGetName();
+
+        //=================================================//
+
+        // all return Object
+        function User(name){
+            if(!(this instanceof User)) {
+                return new User(name);
+            }
+            this.name = name;
+        }
+
+        var user4 = new User('User 4');
+        console.log(user4.name);
+
+        // without new
+        var user5 = User('User 5');
+        console.log(user5.name);
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
